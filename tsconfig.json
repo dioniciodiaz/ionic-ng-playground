@@ -18,6 +18,9 @@
       "@guards/*": [
         "src/app/guards/*"
       ],
+      "@validators/*": [
+        "src/app/validators/*"
+      ],
       "@directives/*": [
         "src/app/directives/*"
       ],
