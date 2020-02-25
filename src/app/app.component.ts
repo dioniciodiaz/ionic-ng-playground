@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
+import Parse from 'parse';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
-import Parse from 'parse';
 
 import { environment } from "@env/environment";
 
