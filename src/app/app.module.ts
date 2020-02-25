@@ -11,8 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { httpInterceptorProviders } from "./http-interceptors";
+
+import { FormControlValidationDirective } from '@directives/form-control-validation.directive';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FormControlValidationDirective],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
