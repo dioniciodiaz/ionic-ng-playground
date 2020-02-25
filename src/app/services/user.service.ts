@@ -11,13 +11,17 @@ export class UserService {
   getUser(): Promise<any> {
     return Parse.User.currentAsync();
   }
-  getUserArticles(): Promise<any> {
+
+  getUserArticles(searchTerms: string = ''): Promise<any> {
     return new Promise((resolve, reject) => {
       const user = Parse.User.current();
       const Article = Parse.Object.extend("Todo");
       // Find all posts by the current user
       const query = new Parse.Query(Article);
       query.equalTo("user", user);
+      if (searchTerms.length) {
+        query.equalTo("content", searchTerms);
+      }
       query.find().then((userArticles) => {
         resolve(userArticles);
       }).catch((err) => reject(err));
