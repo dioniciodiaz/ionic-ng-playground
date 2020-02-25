@@ -25,13 +25,14 @@ export class UserService {
 
   }
   createArticle(content: string) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const user = Parse.User.current();
       const Article = Parse.Object.extend("Todo");
       let newArticle = new Article();
       newArticle.set("content", content);
       newArticle.set("user", user);
-      newArticle.save().then((article) => resolve(article));
+      newArticle.save().then((article) => resolve(article))
+        .catch((err) => reject(err));
     });
   }
 
