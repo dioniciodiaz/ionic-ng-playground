@@ -29,7 +29,8 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   recoverPassword() {
-    this.forgotPasswordService.recoverPassword(this.email.value)
+    const emailCredentials = this.forgotPasswordForm.value;
+    this.forgotPasswordService.recoverPassword(emailCredentials)
       .then(() => {
         this.showToast('Please check your email to continue the process');
         this.router.navigateByUrl('/');
