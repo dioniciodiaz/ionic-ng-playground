@@ -11,7 +11,12 @@ export class HomeGuardService implements CanActivate {
   canActivate(): Promise<boolean> {
     return new Promise((resolve) => {
       this.userService.getUser().then((res) => {
-        resolve(true);
+        if (res) {
+          resolve(true);
+        } else {
+          this.router.navigate(['']);
+          resolve(false);
+        }
       })
         .catch(() => {
           this.router.navigate(['']);

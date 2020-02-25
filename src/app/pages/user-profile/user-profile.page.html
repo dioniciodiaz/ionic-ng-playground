@@ -5,5 +5,45 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <div formGroupName="userFields">
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Username</ion-label>
+            <ion-input type="text" formControlName="name" disabled></ion-input>
+          </ion-item>
+        </div>
+        <div formGroupName="passwordFields">
+          <ion-item>
+            <ion-label position="stacked">Old Password</ion-label>
+            <ion-input type="password" formControlName="oldPassword"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirmPassword"></ion-input>
+          </ion-item>
+          <ion-text *ngIf="showConfirmValidation" color="danger">
+            <h4>The passwords does not match.</h4>
+          </ion-text>
+        </div>
+        <ion-button class="listapp-button" expand="block" share="round" type="submit" color="listapp"
+          [disabled]="showConfirmValidation || userFieldsAreInvalid || passwordFieldsAreInvalid">
+          Save
+        </ion-button>
+      </form>
+    </ion-card-content>
 
+  </ion-card>
+  <ion-button expand="block" share="round" type="submit" color="danger" (click)="logOut()">
+    Log Out
+  </ion-button>
 </ion-content>
