@@ -5,5 +5,38 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="showConfirmValidation" color="danger">
+          <h4>The passwords does not match.</h4>
+        </ion-text>
+        <ion-item>
+          <ion-label>By clicking on Sign up, you agree to Listapp Terms and Privacy
+            Policy.</ion-label>
+          <ion-checkbox slot="start" formControlName="agreeOnterms"></ion-checkbox>
+        </ion-item>
+        <ion-button class="listapp-button" expand="block" share="round" type="submit" color="listapp"
+          [disabled]="showConfirmValidation || signUpForm.invalid">
+          Create Account
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -31,7 +31,7 @@ export class AppComponent {
   }
 
   initializeParseApi() {
-    Parse.serverURL = 'https://parseapi.back4app.com';
+    Parse.serverURL = environment.parseServerURL;
 
     Parse.initialize(
       environment.parseAplicationId,

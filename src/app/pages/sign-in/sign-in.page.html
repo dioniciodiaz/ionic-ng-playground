@@ -5,41 +5,35 @@
 </ion-header>
 
 <ion-content pading="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-content>
-            <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-              <ion-item>
-                <ion-label>Username</ion-label>
-                <ion-input type="text" formControlName="username" appFormControlValidation></ion-input>
-                <ion-icon name="person" slot="start"></ion-icon>
-              </ion-item>
-              <ion-item>
-                <ion-label>Password</ion-label>
-                <ion-input [type]="passwordInput" formControlName="password" appFormControlValidation></ion-input>
-                <ion-button fill="clear" (click)="togglePasswordInputTypeAndIcon()" slot="start">
-                  <ion-icon [name]="passwordIcon">
-                  </ion-icon>
-                </ion-button>
-              </ion-item>
-              <ion-button class="listapp-button" expand="block" share="round" color="listapp" type="submit"
-                [disabled]="!signInForm.valid">
-                Login
-              </ion-button>
-            </form>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+        <ion-item>
+          <ion-label>Username</ion-label>
+          <ion-input type="text" formControlName="username" appFormControlValidation></ion-input>
+          <ion-icon name="person" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input [type]="passwordInput" formControlName="password" appFormControlValidation></ion-input>
+          <ion-button fill="clear" (click)="togglePasswordInputTypeAndIcon()" slot="start">
+            <ion-icon [name]="passwordIcon">
+            </ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-button class="listapp-button" expand="block" share="round" color="listapp" type="submit"
+          [disabled]="signInForm.invalid">
+          Login
+        </ion-button>
+      </form>
 
-            <ion-button class="listapp-button" href="sign-up" expand="block" share="round" color="listapp">
-              Create Account
-            </ion-button>
+      <ion-button class="listapp-button" href="sign-up" expand="block" share="round" color="listapp">
+        Create Account
+      </ion-button>
 
-            <ion-button fill="clear" href="forgot-password" expand="block" share="round">
-              Forgot your password?
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-button fill="clear" href="forgot-password" expand="block" share="round">
+        Forgot your password?
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
