@@ -1,9 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>article-list</ion-title>
+    <ion-title>Searchbar</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar debounce="500" (ionChange)="searchArticlesByTerm($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-list *ngIf="articles.length !==0">
+    <ion-item *ngFor="let article of articles">
+      <ion-button *ngIf="editMode" fill="clear" (click)="delete(article)" slot="start">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-thumbnail>
+        <ion-img src='/src/assets/icon/article-icon.png'></ion-img>
+      </ion-thumbnail>
+      <ion-icon src='/src/assets/icon/article-icon.png'></ion-icon>
+      <p>{{article.attributes.content}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-item *ngIf="articles.length ===0">
+    <h2> You dont have any Articles Yet</h2>
+  </ion-item>
 </ion-content>
