@@ -19,10 +19,10 @@ const routes: Routes = [
           )
       },
       {
-        path: 'add-article',
+        path: 'create-article',
         loadChildren: () =>
-          import('@pages/add-article/add-article.module').then(
-            m => m.AddArticlePageModule
+          import('@pages/create-article/create-article.module').then(
+            m => m.CreateArticlePageModule
           )
       },
       {
