@@ -26,7 +26,7 @@ export class SignInPage implements OnInit {
 
   ngOnInit() {
     this.signInForm = this.signInFormBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.email])],
+      username: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), ValidatePassword])],
     });
   }
@@ -48,12 +48,7 @@ export class SignInPage implements OnInit {
   async signIn() {
     const userCredentials = this.signInForm.value;
     this.signInService.signIn(userCredentials).then((user) => {
-      if (user.get('emailVerified')) {
-        this.navCtrl.navigateRoot('home');
-      } else {
-        this.showToast('Please check your email to complete verification process')
-      }
-
+      this.navCtrl.navigateRoot('home');
     }).catch(async (err: HttpErrorResponse) => this.showToast(err.message)
     );
   }
