@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>create-article</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content pading="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-header>
+        Add Article
+      </ion-card-header>
+      <form [formGroup]="articleForm" (ngSubmit)="createArticle()">
+        <ion-item>
+          <ion-label position="stacked">Article Name</ion-label>
+          <ion-input type="text" formControlName="content"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="content.touched &&content.invalid" color="danger">
+          <h4> Min permited characters : 3</h4>
+        </ion-text>
+        <ion-button class="listapp-button" expand="block" share="round" color="listapp" type="submit"
+          [disabled]="articleForm.invalid">
+          Add Article
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
