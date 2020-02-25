@@ -24,4 +24,7 @@ export class AuthService {
   recoverPassword({ email }: UserForgotPasswordCredentials): Promise<any> {
     return Parse.User.requestPasswordReset(email);
   }
+  logout() {
+    return Parse.User.logOut();
+  }
 }
