@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { AuthService } from "@services/auth.service";
+import { UserService } from "@services/user.service";
 import { ValidatePassword } from "@validators/password.validator";
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -21,8 +23,9 @@ export class SignInPage implements OnInit {
   constructor(
     private signInFormBuilder: FormBuilder,
     private signInService: AuthService,
+    private userService: UserService,
     public toastCtrl: ToastController,
-    public navCtrl: NavController) { }
+    public router: Router) { }
 
   ngOnInit() {
     this.signInForm = this.signInFormBuilder.group({
@@ -47,10 +50,22 @@ export class SignInPage implements OnInit {
 
   async signIn() {
     const userCredentials = this.signInForm.value;
-    this.signInService.signIn(userCredentials).then((user) => {
-      this.navCtrl.navigateRoot('home');
-    }).catch(async (err: HttpErrorResponse) => this.showToast(err.message)
-    );
+    this.signInService.signIn(userCredentials)
+      .then(() => this.confirmAuth())
+      .catch(async (err: HttpErrorResponse) => {
+        this.showToast(err.message);
+        this.signInService.logout();
+      });
+  }
+
+  confirmAuth() {
+    this.userService.getUser().then((res) => {
+      if (res) {
+        this.router.navigateByUrl('/home/article-list')
+      } else {
+        this.confirmAuth();
+      }
+    })
   }
 
   async showToast(message: string) {

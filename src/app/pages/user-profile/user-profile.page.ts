@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, } from '@ionic/angular';
 
 
 import { UserService } from "@services/user.service";
 import { AuthService } from "@services/auth.service";
 import { ValidatePassword } from "@validators/password.validator";
-import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,8 +22,8 @@ export class UserProfilePage implements OnInit {
     private userFormBuilder: FormBuilder,
     private userService: UserService,
     private authService: AuthService,
+    public router: Router,
     public toastCtrl: ToastController,
-    public navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class UserProfilePage implements OnInit {
     });
 
     const passwordFields = this.userFormBuilder.group({
-      oldPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), ValidatePassword])],
+      currentPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), ValidatePassword])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), ValidatePassword])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), ValidatePassword])],
     });
@@ -65,8 +65,8 @@ export class UserProfilePage implements OnInit {
   get name() {
     return this.userForm.get('userFields').get('name');
   }
-  get oldPassword() {
-    return this.userForm.get('passwordFields').get('oldPassword');
+  get currentPassword() {
+    return this.userForm.get('passwordFields').get('currentPassword');
   }
   get password() {
     return this.userForm.get('passwordFields').get('password');
@@ -93,7 +93,7 @@ export class UserProfilePage implements OnInit {
     const { name, email } = this.userForm.get('userFields').value;
     const userCredentials = { name, email, username: name, password: this.password.value, }
 
-    this.userService.updateUser(userCredentials, this.oldPassword.value)
+    this.userService.updateUser(userCredentials, this.currentPassword.value)
       .then(() => this.showToast("User Updated Successfully"))
       .catch(() => this.showToast("Invalid Password"));
   }
@@ -107,6 +107,6 @@ export class UserProfilePage implements OnInit {
   }
 
   logOut() {
-    this.authService.logout().then(() => this.navCtrl.navigateRoot('/'));
+    this.authService.logout().then(() => this.router.navigateByUrl('/'));
   }
 }

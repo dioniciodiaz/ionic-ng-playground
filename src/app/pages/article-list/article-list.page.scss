@@ -47,14 +47,29 @@ ion-content {
             --background:transparent;
             }
 
-            ion-list {
-                    width: 90%;
-                    height: auto;
-                    margin-top: 2vh;
+         ion-list {
+            overflow: scroll;
+            width: 90%;
+            height: 90%;
+            margin-top: 2vh;
 
-                    ion-item {
-                        box-shadow: none;
-                    }
+            ion-item {
+                box-shadow: none;
+
+                ion-thumbnail {
+                    width: 10%;
+                    height: 50%;
+                    border-color: #d7b462;
                 }
+                
+                ion-label {
+                    padding: 5px;
+                }
+            }
+        }
+        .no-results {
+             display: flex;
+            justify-content: center;
+        }
     }
 }

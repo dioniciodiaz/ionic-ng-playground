@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
+import { UserService } from "@services/user.service";
 import { AuthService } from "@services/auth.service";
 import { ValidatePassword } from "@validators/password.validator";
 import { HttpErrorResponse } from '@angular/common/http';
@@ -19,8 +21,10 @@ export class SignUpPage implements OnInit {
   constructor(
     private signUpFormBuilder: FormBuilder,
     private signUpService: AuthService,
+    private userService: UserService,
+    public router: Router,
     public toastCtrl: ToastController,
-    public navCtrl: NavController) { }
+  ) { }
 
   ngOnInit() {
     this.signUpForm = this.signUpFormBuilder.group({
@@ -69,9 +73,19 @@ export class SignUpPage implements OnInit {
     };
 
     this.signUpService.signUp(userCredentials)
-      .then(() => this.navCtrl.navigateRoot('home'))
+      .then(() => this.confirmAuth())
       .catch(async (err: HttpErrorResponse) => this.showToast(err.message));
 
+  }
+
+  confirmAuth() {
+    this.userService.getUser().then((res) => {
+      if (res) {
+        this.router.navigateByUrl('/home/article-list')
+      } else {
+        this.confirmAuth();
+      }
+    })
   }
 
   async showToast(message: string) {

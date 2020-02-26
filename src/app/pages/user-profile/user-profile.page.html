@@ -1,49 +1,93 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="userForm" (ngSubmit)="updateUser()">
-        <div formGroupName="userFields">
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input type="text" formControlName="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Username</ion-label>
-            <ion-input type="text" formControlName="name" disabled></ion-input>
-          </ion-item>
-        </div>
-        <div formGroupName="passwordFields">
-          <ion-item>
-            <ion-label position="stacked">Old Password</ion-label>
-            <ion-input type="password" formControlName="oldPassword"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Password</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Confirm Password</ion-label>
-            <ion-input type="password" formControlName="confirmPassword"></ion-input>
-          </ion-item>
-          <ion-text *ngIf="showConfirmValidation" color="danger">
-            <h4>The passwords does not match.</h4>
-          </ion-text>
-        </div>
-        <ion-button class="listapp-button" expand="block" share="round" type="submit" color="listapp"
-          [disabled]="showConfirmValidation || userFieldsAreInvalid || passwordFieldsAreInvalid">
-          Save
-        </ion-button>
-      </form>
-    </ion-card-content>
 
-  </ion-card>
-  <ion-button expand="block" share="round" type="submit" color="danger" (click)="logOut()">
+  <div class="logo">
+    <ion-img src="assets/icon/user-profile-active-icon.png"> </ion-img>
+  </div>
+  <div class="tittle">
+    <ion-text color="listapp">
+      <h2> Profile</h2>
+    </ion-text>
+  </div>
+  <form class="user-profile-form" [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <div formGroupName="userFields">
+      <ion-text class="label-fixed-left">
+        <small>Name</small>
+      </ion-text>
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">name</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="name.touched && name.invalid" color="danger">
+          <small> username must be at least 3 characters
+            long.</small>
+        </ion-text>
+      </div>
+
+      <ion-text class="label-fixed-left extra-padding">
+        <small>Email</small>
+      </ion-text>
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="email.touched && email.invalid" color="danger">
+          <small>It must be a valid email.</small>
+        </ion-text>
+      </div>
+    </div>
+    <div formGroupName="passwordFields">
+      <ion-text class="label-fixed-left">
+        <small> Current Password</small>
+      </ion-text>
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">Current Password</ion-label>
+          <ion-input type="password" formControlName="currentPassword"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="currentPassword.touched && currentPassword.invalid" color="danger">
+          <small> Current Password must contain a capital letter, lowercase letter, a number and be at least 8
+            characters long.</small>
+        </ion-text>
+      </div>
+      <ion-text class="label-fixed-left large-extra-padding">
+        <small>Password</small>
+      </ion-text>
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="password.touched && password.invalid" color="danger">
+          <small> password must contain a capital letter, lowercase letter, a number and be at least 8 characters
+            long.</small>
+        </ion-text>
+      </div>
+      <ion-text class="label-fixed-left  large-extra-padding">
+        <small>Confirm password</small>
+      </ion-text>
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">Confirm Password</ion-label>
+          <ion-input type="password" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="showConfirmValidation" color="danger">
+          <h4>The passwords does not match.</h4>
+        </ion-text>
+        <ion-text *ngIf="password.touched && password.invalid" color="danger">
+          <small> confirm password must contain a capital letter, lowercase letter, a number and be at least 8
+            characters
+            long.</small>
+        </ion-text>
+      </div>
+    </div>
+    <ion-button expand="block" shape="round" type="submit" color="listapp"
+      [disabled]="showConfirmValidation || userFieldsAreInvalid || passwordFieldsAreInvalid">
+      Save
+    </ion-button>
+  </form>
+  <ion-button expand="block" shape="round" type="submit" color="danger" (click)="logOut()">
     Log Out
   </ion-button>
 </ion-content>

@@ -1,42 +1,77 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>signUp</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
-        <ion-item>
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Username</ion-label>
-          <ion-input type="text" formControlName="name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Confirm Password</ion-label>
-          <ion-input type="password" formControlName="confirmPassword"></ion-input>
-        </ion-item>
-        <ion-text *ngIf="showConfirmValidation" color="danger">
-          <h4>The passwords does not match.</h4>
-        </ion-text>
-        <ion-item>
-          <ion-label>By clicking on Sign up, you agree to Listapp Terms and Privacy
-            Policy.</ion-label>
-          <ion-checkbox slot="start" formControlName="agreeOnterms"></ion-checkbox>
-        </ion-item>
-        <ion-button class="listapp-button" expand="block" share="round" type="submit" color="listapp"
-          [disabled]="showConfirmValidation || signUpForm.invalid">
-          Create Account
-        </ion-button>
-      </form>
-    </ion-card-content>
-  </ion-card>
+
+  <div class="logo">
+    <ion-img src="assets/icon/auth-icon.png"> </ion-img>
+  </div>
+
+  <form class="sign-un-form " [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <ion-text class="label-fixed-left">
+      <small>Name</small>
+    </ion-text>
+    <div class="item-container">
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="name.touched && name.invalid" color="danger">
+        <small> username must be at least 3 characters
+          long.</small>
+      </ion-text>
+    </div>
+
+    <ion-text class="label-fixed-left extra-padding">
+      <small>Email</small>
+    </ion-text>
+    <div class="item-container">
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="email.touched && email.invalid" color="danger">
+        <small>It must be a valid email.</small>
+      </ion-text>
+    </div>
+
+    <ion-text class="label-fixed-left extra-padding">
+      <small>Password</small>
+    </ion-text>
+    <div class="item-container">
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="password.touched && password.invalid" color="danger">
+        <small> password must contain a capital letter, lowercase letter, a number and be at least 8 characters
+          long.</small>
+      </ion-text>
+    </div>
+    <ion-text class="label-fixed-left">
+      <small>Confirm password</small>
+    </ion-text>
+    <div class="item-container">
+      <ion-item>
+        <ion-label position="stacked">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="showConfirmValidation" color="danger">
+        <small>The passwords does not match.</small>
+      </ion-text>
+      <ion-text *ngIf="password.touched && password.invalid" color="danger">
+        <small> confirm password must contain a capital letter, lowercase letter, a number and be at least 8 characters
+          long.</small>
+      </ion-text>
+    </div>
+
+    <div class="agree-terms">
+      <ion-item>
+        <p>By clicking on Create Account, you agree to Listapp Terms and Privacy Policy.</p>
+        <ion-checkbox slot="start" formControlName="agreeOnterms"></ion-checkbox>
+      </ion-item>
+    </div>
+
+    <ion-button class="listapp-button" expand="block" shape="round" type="submit" color="listapp"
+      [disabled]="showConfirmValidation || signUpForm.invalid">
+      Create Account
+    </ion-button>
+  </form>
 </ion-content>
