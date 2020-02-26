@@ -1,0 +1,74 @@
+ion-content {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div.logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 14vh;
+
+        ion-img {
+            width: 56%;
+            height: auto;
+        }
+    }
+
+    .sign-un-form {
+        margin-top: 12vh;
+
+        ion-text.label-fixed-left {
+            background-color: var(--ion-color-listapp);
+            padding-left: 20px ;
+            padding-right: 5px ;
+            color: white;
+        }
+
+           ion-text.label-fixed-left.extra-padding {
+               padding-right: 30px ;
+        }
+
+        div.item-container {
+                margin-bottom: 1vh;
+
+                ion-text {
+                    display: flex;
+                    justify-content: center;
+                    
+                    small {
+                            padding: 0 5%;
+                    }
+                }
+        }
+       
+      
+        ion-item {
+             box-shadow: none;
+            --color: var(--ion-color-listapp);
+             padding: 0 8vw;
+             width: 80%;
+        }
+        .agree-terms {
+            margin-top: 2vh;
+        
+            ion-item {
+                --color: var(--ion-color-listapp);
+                display:flex;
+                padding: 0 0;
+                width:94%;
+                font-size: small;
+                ion-checkbox {
+                --background-checked: var(--ion-color-listapp);
+                --border-color-checked: var(--ion-color-listapp);
+                }
+            }
+        }
+        
+          ion-button {
+            margin-bottom: 5vh;
+            box-shadow: none;
+        }
+    }
+}
