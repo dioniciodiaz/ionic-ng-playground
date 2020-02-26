@@ -1,4 +1,4 @@
-<ion-content pading="true">
+<ion-content pading="true" scrollY="false">
   <div class="logo">
     <ion-img src="assets/icon/home-icon.png"> </ion-img>
   </div>
@@ -11,8 +11,9 @@
       <ion-text slot="start" color="listapp">
         <h2> Mi Lista...</h2>
       </ion-text>
-      <ion-text slot="end">
+      <ion-text *ngIf="articles.length !== 0" slot="end">
         <span (click)="editMode = !editMode">Editar</span>
+
       </ion-text>
     </ion-item>
     <ion-list *ngIf="articles.length !== 0">
@@ -23,12 +24,12 @@
         <ion-thumbnail>
           <ion-img src='assets/icon/article-icon.png'></ion-img>
         </ion-thumbnail>
-        <p>{{article.attributes.content}}</p>
+        <ion-label>{{article.attributes.content}}</ion-label>
       </ion-item>
     </ion-list>
-    <ion-item *ngIf="articles.length === 0">
-      <h2> no results</h2>
-    </ion-item>
+    <div class="no-results" *ngIf="articles.length === 0">
+      <h2> No results.</h2>
+    </div>
   </div>
 
 </ion-content>
