@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "@services/user.service";
-
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.page.html',
@@ -10,10 +10,12 @@ export class ArticleListPage implements OnInit {
   articles: []
   editMode: false;
   currentSearchTerm = '';
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.searchArticles();
+    this.route.url.subscribe(() =>
+      this.searchArticles());
+
   }
   searchArticlesByTerm(value) {
     const term = value.detail.value
