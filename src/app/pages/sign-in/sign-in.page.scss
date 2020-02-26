@@ -1,0 +1,53 @@
+ion-content {
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div.logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 14vh;
+
+        ion-img {
+            width: 56%;
+            height: auto;
+        }
+    }
+
+    .form-login {
+        padding: 0 8vw;
+        margin-top: 12vh;
+        
+        div {
+             &.item-container {
+                margin-bottom: 5vh;
+
+                ion-text {
+                    display: flex;
+                    justify-content: center;
+                    
+                    small {
+                            padding-left: 5%;
+                    }
+                }
+            }
+        }
+         ion-button {
+            margin-bottom: 5vh;
+            box-shadow: none;
+        }
+
+        ion-item {
+             box-shadow: none;
+            --background: rgb(230, 230, 230);
+            --color: var(--ion-color-listapp);
+            border-radius: 79px;
+        }
+
+        .forgot {
+            color: rgb(230, 230, 230);
+        }
+    }
+}
