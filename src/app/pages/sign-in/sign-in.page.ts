@@ -16,7 +16,7 @@ export class SignInPage implements OnInit {
 
   signInForm: FormGroup;
   passwordInput: string = 'password';
-  passwordIcon: string = 'lock-closed';
+  lockIcon: boolean = false;
 
   constructor(
     private signInFormBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class SignInPage implements OnInit {
   togglePasswordInputTypeAndIcon() {
     const actual = this.passwordInput;
     this.passwordInput = actual === 'password' ? 'text' : 'password'
-    this.passwordIcon = actual === 'password' ? 'lock-open' : 'lock-closed'
+    this.lockIcon = actual === 'password';
   }
 
   async signIn() {

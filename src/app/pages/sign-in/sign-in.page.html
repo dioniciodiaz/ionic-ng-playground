@@ -1,39 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>sign In</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content pading="true">
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-        <ion-item>
-          <ion-label>Username</ion-label>
-          <ion-input type="text" formControlName="username" appFormControlValidation></ion-input>
-          <ion-icon name="person" slot="start"></ion-icon>
-        </ion-item>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input [type]="passwordInput" formControlName="password" appFormControlValidation></ion-input>
-          <ion-button fill="clear" (click)="togglePasswordInputTypeAndIcon()" slot="start">
-            <ion-icon [name]="passwordIcon">
-            </ion-icon>
-          </ion-button>
-        </ion-item>
-        <ion-button class="listapp-button" expand="block" share="round" color="listapp" type="submit"
-          [disabled]="signInForm.invalid">
-          Login
-        </ion-button>
-      </form>
 
-      <ion-button class="listapp-button" href="sign-up" expand="block" share="round" color="listapp">
-        Create Account
-      </ion-button>
+  <div class="logo">
+    <ion-img src="assets/icon/auth-icon.png"> </ion-img>
+  </div>
 
-      <ion-button fill="clear" href="forgot-password" expand="block" share="round">
-        Forgot your password?
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
+  <form class="form-login" [formGroup]="signInForm" (ngSubmit)="signIn()">
+    <div class="item-container">
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+        <span slot="start">
+          <ion-icon name="person"></ion-icon>
+        </span>
+      </ion-item>
+      <ion-text *ngIf="username.touched && username.invalid" color="danger">
+        <small> username must be at least 8 characters
+          long.</small>
+      </ion-text>
+    </div>
+
+    <div class="item-container">
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input [type]="passwordInput" formControlName="password" placeholder="*********"></ion-input>
+        <span (click)="togglePasswordInputTypeAndIcon()" slot="start">
+          <ion-icon *ngIf="!lockIcon" name="lock-closed"></ion-icon>
+          <ion-icon *ngIf="lockIcon" name="lock-open"></ion-icon>
+        </span>
+      </ion-item>
+      <ion-text *ngIf="password.touched && password.invalid" color="danger">
+        <small> password must contain a capital letter, lowercase letter, a number and be at least 8 characters
+          long</small>
+      </ion-text>
+    </div>
+
+    <ion-button class="listapp-button" expand="block" shape="round" color="listapp" type="submit"
+      [disabled]="signInForm.invalid">
+      Login
+    </ion-button>
+
+    <ion-button class="listapp-button" href="sign-up" expand="block" shape="round" color="listapp">
+      Create Account
+    </ion-button>
+
+    <ion-button class="forgot" fill="clear" href="forgot-password" expand="block" shape="round">
+      Forgot your password?
+    </ion-button>
+
+  </form>
 </ion-content>
