@@ -7,30 +7,28 @@
     </ion-searchbar>
   </div>
   <div class="results-container">
-    <div class="">
-      <ion-item>
-        <ion-text slot="start" color="listapp">
-          <h2> Mi Lista...</h2>
-        </ion-text>
-        <ion-text slot="end">
-          <span (click)="editMode = !editMode">Editar</span>
-        </ion-text>
+    <ion-item class="results-actions">
+      <ion-text slot="start" color="listapp">
+        <h2> Mi Lista...</h2>
+      </ion-text>
+      <ion-text slot="end">
+        <span (click)="editMode = !editMode">Editar</span>
+      </ion-text>
+    </ion-item>
+    <ion-list *ngIf="articles.length !== 0">
+      <ion-item *ngFor="let article of articles">
+        <ion-button *ngIf="editMode" fill="clear" (click)="delete(article)" slot="start">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-thumbnail>
+          <ion-img src='assets/icon/article-icon.png'></ion-img>
+        </ion-thumbnail>
+        <p>{{article.attributes.content}}</p>
       </ion-item>
-      <ion-list *ngIf="articles.length !== 0">
-        <ion-item *ngFor="let article of articles">
-          <ion-button *ngIf="editMode" fill="clear" (click)="delete(article)" slot="start">
-            <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-button>
-          <ion-thumbnail>
-            <ion-img src='assets/icon/article-icon.png'></ion-img>
-          </ion-thumbnail>
-          <p>{{article.attributes.content}}</p>
-        </ion-item>
-      </ion-list>
-      <ion-item *ngIf="articles.length === 0">
-        <h2> no results</h2>
-      </ion-item>
-    </div>
+    </ion-list>
+    <ion-item *ngIf="articles.length === 0">
+      <h2> no results</h2>
+    </ion-item>
   </div>
 
 </ion-content>

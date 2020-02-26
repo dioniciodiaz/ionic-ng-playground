@@ -37,14 +37,19 @@ ion-content {
     }
 
     div.results-container {
-        display: flex;
-        height: 100%;
+        // height: 100%;
         background-color:#ffffff;
         border-top-right-radius: 60px;
         border-top-left-radius: 60px;
-        justify-content: center;
+
+        ion-item.results-actions {
+            margin-left: 24px;
+            margin-right: 24px;
+            --background:transparent;
+            }
+
             ion-list {
-                    width: 100%;
+                    width: 90%;
                     height: auto;
                     margin-top: 2vh;
 
