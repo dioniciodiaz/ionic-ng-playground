@@ -12,6 +12,11 @@ const routes: Routes = [
     canActivate: [HomeGuard],
     children: [
       {
+        path: '',
+        redirectTo: '/home/article-list',
+        pathMatch: 'full',
+      },
+      {
         path: 'article-list',
         loadChildren: () =>
           import('@pages/article-list/article-list.module').then(
