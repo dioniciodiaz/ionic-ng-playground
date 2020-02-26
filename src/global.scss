@@ -27,7 +27,11 @@
 
 @import "./theme/colors.scss";
 
-// .listapp-button {
-// 	background-color:#f4cc6f;
-// 	border-radius: 124px;
-// }
+
+.searchbar-input.sc-ion-searchbar-md {
+  border-radius: 25px;
+}
+
+.searchbar-input.sc-ion-searchbar-ios {
+  border-radius: 25px;
+}
