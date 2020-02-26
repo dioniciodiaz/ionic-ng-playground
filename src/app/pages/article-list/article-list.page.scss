@@ -1,0 +1,56 @@
+
+ion-content {
+   --background:  #f4cd6f;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div.logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 14vh;
+
+        ion-img {
+            width: 56%;
+            height: auto;
+        }
+    }
+
+    div.searchbar-container {
+        display: flex;
+        justify-content: center;
+        padding: 5%;
+        margin-top: 8vh;
+
+        ion-searchbar {
+            --background:#d7b462;
+            --color:white;
+            --placeholder-color:white;
+            --icon-color:white;
+            --cancel-button-color:white;
+            --clear-button-color:white;
+            box-shadow: none;
+              
+          // we need to look inside to put  rounded borders
+        }
+    }
+
+    div.results-container {
+        display: flex;
+        height: 100%;
+        background-color:#ffffff;
+        border-top-right-radius: 60px;
+        border-top-left-radius: 60px;
+        justify-content: center;
+            ion-list {
+                    width: 100%;
+                    height: auto;
+                    margin-top: 2vh;
+
+                    ion-item {
+                        box-shadow: none;
+                    }
+                }
+    }
+}
