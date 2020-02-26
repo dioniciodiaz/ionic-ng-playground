@@ -16,12 +16,11 @@ ion-content {
         }
     }
 
-    .form-login {
+    .sign-in-form {
         padding: 0 8vw;
         margin-top: 12vh;
         
-        div {
-             &.item-container {
+        div.item-container {
                 margin-bottom: 5vh;
 
                 ion-text {
@@ -31,7 +30,6 @@ ion-content {
                     small {
                             padding-left: 5%;
                     }
-                }
             }
         }
          ion-button {
