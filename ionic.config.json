@@ -1,7 +1,8 @@
 {
   "name": "ionic-ng-playground",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

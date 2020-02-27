@@ -1,0 +1,35 @@
+<ion-content pading="true" scrollY="false">
+  <div class="logo">
+    <ion-img src="assets/icon/home-icon.png"> </ion-img>
+  </div>
+  <div class="searchbar-container">
+    <ion-searchbar debounce="500" (ionChange)="searchArticlesByTerm($event)" placeholder="Buscar Productos">
+    </ion-searchbar>
+  </div>
+  <div class="results-container">
+    <ion-item class="results-actions">
+      <ion-text slot="start" color="listapp">
+        <h2> Mi Lista...</h2>
+      </ion-text>
+      <ion-text *ngIf="articles.length !== 0" slot="end">
+        <span (click)="editMode = !editMode">Editar</span>
+
+      </ion-text>
+    </ion-item>
+    <ion-list *ngIf="articles.length !== 0">
+      <ion-item *ngFor="let article of articles">
+        <ion-button *ngIf="editMode" fill="clear" (click)="delete(article)" slot="start">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <ion-thumbnail>
+          <ion-img src='assets/icon/article-icon.png'></ion-img>
+        </ion-thumbnail>
+        <ion-label>{{article.attributes.content}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <div class="no-results" *ngIf="articles.length === 0">
+      <h2> No results.</h2>
+    </div>
+  </div>
+
+</ion-content>

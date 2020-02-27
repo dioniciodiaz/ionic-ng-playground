@@ -1,0 +1,35 @@
+<ion-content pading="true" scrollY="false">
+
+  <div class="logo">
+    <ion-img src="assets/icon/home-icon.png"> </ion-img>
+  </div>
+
+  <div class="create-article-form-container">
+
+    <ion-item class="section-title">
+      <ion-text slot="start">
+        <h2> Añadir a la lista..</h2>
+      </ion-text>
+    </ion-item>
+
+    <form class="create-article-form" [formGroup]="articleForm" (ngSubmit)="createArticle()">
+
+      <div class="item-container">
+        <ion-item>
+          <ion-label position="stacked">Article Name</ion-label>
+          <ion-input type="text" formControlName="content"></ion-input>
+        </ion-item>
+        <ion-text *ngIf="content.touched && content.invalid" color="danger">
+          <small> Article Name must be at least 3 characters
+            long..</small>
+        </ion-text>
+      </div>
+
+      <ion-button class="listapp-button" expand="block" shape="round" color="listapp" type="submit"
+        [disabled]="articleForm.invalid">
+        Add
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

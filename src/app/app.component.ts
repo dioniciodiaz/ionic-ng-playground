@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import Parse from 'parse';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { environment } from "@env/environment";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +25,16 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.initializeParseApi();
     });
+  }
+
+  initializeParseApi() {
+    Parse.serverURL = environment.parseServerURL;
+
+    Parse.initialize(
+      environment.parseAplicationId,
+      environment.parseJavaScriptKey
+    );
   }
 }

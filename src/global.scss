@@ -24,3 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "./theme/colors.scss";
+
+
+.searchbar-input.sc-ion-searchbar-md {
+  border-radius: 25px;
+}
+
+.searchbar-input.sc-ion-searchbar-ios {
+  border-radius: 25px;
+}
